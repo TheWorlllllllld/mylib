@@ -39,12 +39,12 @@ TcpConnection::TcpConnection(EventLoop* loop, const std::string& nameArg, int so
     channel_->setCloseCallback(std::bind(&TcpConnection::handleClose, this));
     channel_->setErrorCallback(std::bind(&TcpConnection::handleError, this));
 
-    LOG_INFO("TcpConnection::ctor [%s] fd=%d ", name_.c_str(), sockfd);
+    // LOG_INFO("TcpConnection::ctor [%s] fd=%d ", name_.c_str(), sockfd);
     socket_->setKeepAlive(true);
 }
 
 TcpConnection::~TcpConnection(){
-    LOG_INFO("TcpConnection::dtor [%s] fd=%d state=%d ", name_.c_str(), channel_->fd(), (int)state_);
+    // LOG_INFO("TcpConnection::dtor [%s] fd=%d state=%d ", name_.c_str(), channel_->fd(), (int)state_);
 }
 
 void TcpConnection::send(const std::string &buf){
@@ -182,7 +182,7 @@ void TcpConnection::handleWrite(){
 }
 
 void TcpConnection::handleClose(){
-    LOG_INFO("TcpConnection::handleClose fd=%d state=%d ", channel_->fd(), (int)state_);
+    // LOG_INFO("TcpConnection::handleClose fd=%d state=%d ", channel_->fd(), (int)state_);
     setState(kDisconnected);
     channel_->disableAll();
 
@@ -201,7 +201,7 @@ void TcpConnection::handleError(){
     else{
         errno = optval;
     }
-    LOG_ERROR("TcpConnection::handleError SO_ERROR:%s  ", strerror(err));
+    // LOG_ERROR("TcpConnection::handleError SO_ERROR:%s  ", strerror(err));
 }
 
 

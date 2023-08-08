@@ -58,7 +58,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr){
     snprintf(buf, sizeof buf, "-%s#%d", ipPort_.c_str(), nextConnId_);
     ++nextConnId_;
     std::string connName = name_ + buf;
-    LOG_INFO("TcpServer::newConnection [%s] - new connection [%s] from %s", name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
+    // LOG_INFO("TcpServer::newConnection [%s] - new connection [%s] from %s", name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
     
     sockaddr_in local;
     ::bzero(&local, sizeof local);
@@ -73,7 +73,11 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr){
     InetAddress localAddr(local);
     
     //根据新到来的连接，将其封装为一个TcpConnect对象
-    TcpConnectionPtr conn(new TcpConnection(subloop, connName, sockfd, localAddr, peerAddr));
+    TcpConnectionPtr conn(new TcpConnection(subloop, 
+                                            connName, 
+                                            sockfd, 
+                                            localAddr, 
+                                            peerAddr));
     //将这个连接放入连接map中
     connections_[connName] = conn;
     //调用连接的回调函数:Tcpserver -> TcpConnection -> Channel -> EventLoop -> notify ->channel
@@ -90,7 +94,7 @@ void TcpServer::removeConnection(const TcpConnectionPtr &conn){
 }
 
 void TcpServer::removeConnectionInLoop(const TcpConnectionPtr &conn){
-    LOG_INFO("TcpServer::removeConnectionInLoop [%s] - connection [%s] ", name_.c_str(), conn->name().c_str());
+    // LOG_INFO("TcpServer::removeConnectionInLoop [%s] - connection [%s] ", name_.c_str(), conn->name().c_str());
     connections_.erase(conn->name());
     EventLoop* subLoop = conn->getLoop();
     subLoop->queueInLoop(std::bind(&TcpConnection::connectDestroyed, conn));

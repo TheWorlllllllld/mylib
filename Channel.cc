@@ -46,7 +46,7 @@ void Channel::handleEvent(Timestamp receiveTime)
 //处理事件，根据epoll_wait返回的事件类型来调用对应的回调函数
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
-    LOG_INFO("channel handleEvent revents:%d", revents_);
+    // LOG_INFO("channel handleEvent revents:%d", revents_);
 
     if((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN)){
         // if(tied_){
