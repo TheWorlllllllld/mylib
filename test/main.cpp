@@ -27,7 +27,7 @@ public:
         );
 
         // 设置合适的loop线程数量 loopthread
-        server_.setThreadNum(0);
+        // server_.setThreadNum(0);
     }
     void start()
     {

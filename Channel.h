@@ -14,6 +14,7 @@ class Channel:noncopyable
 public:
     using EventCallback = std::function<void()>;//事件回调函数
     using ReadEventCallback = std::function<void(Timestamp)>;//读事件回调函数
+    
     Channel(EventLoop* loop, int fd);
     ~Channel();
 
