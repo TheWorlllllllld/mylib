@@ -1,5 +1,9 @@
-testserver :
-	g++ -o testserver main.cpp -lmymuduo -lpthread -g
+server :
+	g++ -o server tcpserver.cpp -lmymuduo -lpthread -g
+client :
+	g++ -o client tcpclient.cpp -lmymuduo -lpthread -g
 
-clear :
-	rm -f testserver
+cc :
+	rm -f client
+cs :
+	rm -f server

@@ -17,7 +17,7 @@ public:
     std::string toIpPort() const;
     uint16_t toPort() const;
 
-    const struct sockaddr_in* getSockAddr() const
+    const struct sockaddr_in *getSockAddr() const
     {
         return &addr_;
     }

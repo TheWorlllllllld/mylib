@@ -40,12 +40,10 @@ private:
         if (conn->connected())
         {
             LOG_INFO("Connection UP : %s", conn->localAddress().toIpPort().c_str());
-            cout<<123<<endl;
         }
         else
         {
             LOG_INFO("Connection DOWN : %s", conn->localAddress().toIpPort().c_str());
-            cout<<321<<endl;
         }
     }
 

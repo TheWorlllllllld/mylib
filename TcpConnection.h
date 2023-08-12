@@ -22,6 +22,7 @@ public:
     EventLoop *getLoop() const { return loop_; }
     const std::string& name() const { return name_; }
     const InetAddress& localAddress() const { return local_addr_; }
+    const InetAddress& peerAddress() const { return peer_addr_; }
 
     bool connected() const { return state_ == kConnected; }
 

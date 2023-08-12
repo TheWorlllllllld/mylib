@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -203,6 +203,33 @@ Channel.s: Channel.cc.s
 Channel.cc.s:
 	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Channel.cc.s
 .PHONY : Channel.cc.s
+
+Connector.o: Connector.cc.o
+
+.PHONY : Connector.o
+
+# target to build an object file
+Connector.cc.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Connector.cc.o
+.PHONY : Connector.cc.o
+
+Connector.i: Connector.cc.i
+
+.PHONY : Connector.i
+
+# target to preprocess a source file
+Connector.cc.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Connector.cc.i
+.PHONY : Connector.cc.i
+
+Connector.s: Connector.cc.s
+
+.PHONY : Connector.s
+
+# target to generate assembly for a file
+Connector.cc.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Connector.cc.s
+.PHONY : Connector.cc.s
 
 CurrentThread.o: CurrentThread.cc.o
 
@@ -474,6 +501,60 @@ Socket.cc.s:
 	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Socket.cc.s
 .PHONY : Socket.cc.s
 
+SocketsOps.o: SocketsOps.cc.o
+
+.PHONY : SocketsOps.o
+
+# target to build an object file
+SocketsOps.cc.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/SocketsOps.cc.o
+.PHONY : SocketsOps.cc.o
+
+SocketsOps.i: SocketsOps.cc.i
+
+.PHONY : SocketsOps.i
+
+# target to preprocess a source file
+SocketsOps.cc.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/SocketsOps.cc.i
+.PHONY : SocketsOps.cc.i
+
+SocketsOps.s: SocketsOps.cc.s
+
+.PHONY : SocketsOps.s
+
+# target to generate assembly for a file
+SocketsOps.cc.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/SocketsOps.cc.s
+.PHONY : SocketsOps.cc.s
+
+TcpClient.o: TcpClient.cc.o
+
+.PHONY : TcpClient.o
+
+# target to build an object file
+TcpClient.cc.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TcpClient.cc.o
+.PHONY : TcpClient.cc.o
+
+TcpClient.i: TcpClient.cc.i
+
+.PHONY : TcpClient.i
+
+# target to preprocess a source file
+TcpClient.cc.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TcpClient.cc.i
+.PHONY : TcpClient.cc.i
+
+TcpClient.s: TcpClient.cc.s
+
+.PHONY : TcpClient.s
+
+# target to generate assembly for a file
+TcpClient.cc.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TcpClient.cc.s
+.PHONY : TcpClient.cc.s
+
 TcpConnection.o: TcpConnection.cc.o
 
 .PHONY : TcpConnection.o
@@ -600,6 +681,9 @@ help:
 	@echo "... Channel.o"
 	@echo "... Channel.i"
 	@echo "... Channel.s"
+	@echo "... Connector.o"
+	@echo "... Connector.i"
+	@echo "... Connector.s"
 	@echo "... CurrentThread.o"
 	@echo "... CurrentThread.i"
 	@echo "... CurrentThread.s"
@@ -630,6 +714,12 @@ help:
 	@echo "... Socket.o"
 	@echo "... Socket.i"
 	@echo "... Socket.s"
+	@echo "... SocketsOps.o"
+	@echo "... SocketsOps.i"
+	@echo "... SocketsOps.s"
+	@echo "... TcpClient.o"
+	@echo "... TcpClient.i"
+	@echo "... TcpClient.s"
 	@echo "... TcpConnection.o"
 	@echo "... TcpConnection.i"
 	@echo "... TcpConnection.s"
