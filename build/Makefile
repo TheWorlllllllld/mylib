@@ -636,6 +636,60 @@ Thread.cc.s:
 	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Thread.cc.s
 .PHONY : Thread.cc.s
 
+Timer.o: Timer.cc.o
+
+.PHONY : Timer.o
+
+# target to build an object file
+Timer.cc.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Timer.cc.o
+.PHONY : Timer.cc.o
+
+Timer.i: Timer.cc.i
+
+.PHONY : Timer.i
+
+# target to preprocess a source file
+Timer.cc.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Timer.cc.i
+.PHONY : Timer.cc.i
+
+Timer.s: Timer.cc.s
+
+.PHONY : Timer.s
+
+# target to generate assembly for a file
+Timer.cc.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/Timer.cc.s
+.PHONY : Timer.cc.s
+
+TimerQueue.o: TimerQueue.cc.o
+
+.PHONY : TimerQueue.o
+
+# target to build an object file
+TimerQueue.cc.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TimerQueue.cc.o
+.PHONY : TimerQueue.cc.o
+
+TimerQueue.i: TimerQueue.cc.i
+
+.PHONY : TimerQueue.i
+
+# target to preprocess a source file
+TimerQueue.cc.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TimerQueue.cc.i
+.PHONY : TimerQueue.cc.i
+
+TimerQueue.s: TimerQueue.cc.s
+
+.PHONY : TimerQueue.s
+
+# target to generate assembly for a file
+TimerQueue.cc.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/TimerQueue.cc.s
+.PHONY : TimerQueue.cc.s
+
 Timestamp.o: Timestamp.cc.o
 
 .PHONY : Timestamp.o
@@ -729,6 +783,12 @@ help:
 	@echo "... Thread.o"
 	@echo "... Thread.i"
 	@echo "... Thread.s"
+	@echo "... Timer.o"
+	@echo "... Timer.i"
+	@echo "... Timer.s"
+	@echo "... TimerQueue.o"
+	@echo "... TimerQueue.i"
+	@echo "... TimerQueue.s"
 	@echo "... Timestamp.o"
 	@echo "... Timestamp.i"
 	@echo "... Timestamp.s"

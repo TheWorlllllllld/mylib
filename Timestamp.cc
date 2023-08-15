@@ -1,13 +1,18 @@
 #include "Timestamp.h"
 
 #include <time.h>
+#include <sys/time.h>
 
 Timestamp::Timestamp():microSecondsSinceEpoch_(0){}
 Timestamp::Timestamp(int64_t microSecondsSinceEpoch):microSecondsSinceEpoch_(microSecondsSinceEpoch) {}
 
+
+// 必须达到微妙级别才可以，直接用time函数是秒级别的不可以
 Timestamp Timestamp::now(){
-    time_t now = time(NULL);
-    return Timestamp(now);
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    int64_t  seconds = tv.tv_sec;   // 秒
+    return Timestamp(seconds * kMicroSecondsPerSecond + tv.tv_usec);
 }
 std::string Timestamp::toString() const{
     char buf[128] = {0};

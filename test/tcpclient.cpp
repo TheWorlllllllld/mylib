@@ -7,18 +7,19 @@
 
 #include <thread>
 
+using namespace std;
 
 std::string message = "Hello\n";
 std::string message2 = "World\n";
 
-void onConnection(const TcpConnectionPtr& conn)
+void onConnection(const TcpConnectionPtr &conn)
 {
   if (conn->connected())
   {
     printf("onConnection(): new connection [%s] from %s\n",
            conn->name().c_str(),
            conn->peerAddress().toIpPort().c_str());
-    conn->send(message);
+    // conn->send(message);
   }
   else
   {
@@ -27,8 +28,8 @@ void onConnection(const TcpConnectionPtr& conn)
   }
 }
 
-void onMessage(const TcpConnectionPtr& conn,
-               Buffer* buf,
+void onMessage(const TcpConnectionPtr &conn,
+               Buffer *buf,
                Timestamp receiveTime)
 {
   printf("onMessage(): received %zd bytes from connection [%s] at %s\n",
@@ -42,30 +43,33 @@ void onMessage(const TcpConnectionPtr& conn,
 int main()
 {
   EventLoop loop;
-  InetAddress serverAddr(8000,"127.0.0.1");
+  InetAddress serverAddr(8000, "127.0.0.1");
   TcpClient client(&loop, serverAddr, "TcpClient");
 
-  // client2
-  TcpClient client2(&loop, serverAddr, "TcpClient2");
+  auto a = [&]()
+  {
+    client.connection()->send(message);
+    // std::cout<<"send message"<<std::endl;
+  };
 
-  // 创建一个线程，每隔2秒发送一次消息
-  std::thread t([&](){
-    while(true){
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-      client.connection()->send(message);
-      client2.connection()->send(message2);
+  thread t([&]()
+  {
+    while(1){
+      sleep(2);
+      a();
     }
   });
+
+  loop.runEvery(1, a);
+
+  TimerQueue* Queue = loop.getTimerQueue();
+  cout<<Queue->timerlen()<<endl;
+  cout<<Queue->activeTimerlen()<<endl;
+  cout<<Queue->cancelingTimerlen()<<endl;
 
   client.setConnectionCallback(onConnection);
   client.setMessageCallback(onMessage);
   client.enableRetry();
   client.connect();
-
-  client2.setConnectionCallback(onConnection);
-  client2.setMessageCallback(onMessage);
-  client2.enableRetry();
-  client2.connect();
-
   loop.loop();
 }

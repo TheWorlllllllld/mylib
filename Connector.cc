@@ -200,7 +200,7 @@ void Connector::retry(int sockfd)
     {
         LOG_INFO("Connector::retry - Retry connecting to %s in %d milliseconds.", serverAddr_.toIpPort().c_str(), retryDelayMs_);
         // TODO 完善定时器
-        // loop_->runAfter(retryDelayMs_ / 1000.0, std::bind(&Connector::startInLoop, shared_from_this()));
+        loop_->runAfter(retryDelayMs_ / 1000.0, std::bind(&Connector::startInLoop, shared_from_this()));
         retryDelayMs_ = std::min(retryDelayMs_ * 2, kMaxRetryDelayMs);
     }
     else

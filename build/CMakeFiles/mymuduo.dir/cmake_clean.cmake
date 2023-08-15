@@ -20,6 +20,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/mymuduo.dir/TcpConnection.cc.o"
   "CMakeFiles/mymuduo.dir/TcpServer.cc.o"
   "CMakeFiles/mymuduo.dir/Thread.cc.o"
+  "CMakeFiles/mymuduo.dir/Timer.cc.o"
+  "CMakeFiles/mymuduo.dir/TimerQueue.cc.o"
   "CMakeFiles/mymuduo.dir/Timestamp.cc.o"
 )
 

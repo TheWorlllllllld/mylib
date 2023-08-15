@@ -51,7 +51,7 @@ TcpClient::~TcpClient()
     {
         connector_->stop();
         // TODO: 完善定时器
-        // loop_->runAfter(1, std::bind(&detail::removeConnection, loop_, conn));
+        loop_->runAfter(1, std::bind(&detail::removeConnection, loop_, conn));
     }
 }
 

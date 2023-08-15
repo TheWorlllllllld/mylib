@@ -9,6 +9,8 @@
 #include "noncopyable.h"
 #include "Timestamp.h"
 #include "CurrentThread.h"
+#include "TimerQueue.h"
+#include "Timerid.h"
 
 class Channel;
 class Poller;
@@ -30,6 +32,14 @@ public:
     void runInLoop(Functor cb);
     //在当前loop中延迟执行一个函数
     void queueInLoop(Functor cb);
+
+    //定时器相关
+    TimerId runAt(Timestamp time, TimerCallback cb);
+    TimerId runAfter(double delay, TimerCallback cb);
+    TimerId runEvery(double interval, TimerCallback cb);
+    void cancel(TimerId timerId);
+
+    TimerQueue *getTimerQueue() { return timerQueue_.get(); }
     
     //唤醒loop所在的线程的
     void wakeup();
@@ -56,6 +66,7 @@ private:
 
     Timestamp pollReturnTime_;//epoll_wait返回时间
     std::unique_ptr<Poller> poller_;//epoll实例
+    std::unique_ptr<TimerQueue> timerQueue_;//定时器队列
 
     int wakeupFd_;//唤醒线程的fd
     std::unique_ptr<Channel> wakeupChannel_;

@@ -32,6 +32,7 @@ EventLoop::EventLoop()
     ,callingPendingFunctors_(false)
     ,threadId_(CurrentThread::tid())
     ,poller_(Poller::newDefaultPoller(this))
+    ,timerQueue_(new TimerQueue(this))
     ,wakeupFd_(creatEventfd())
     ,wakeupChannel_(new Channel(this, wakeupFd_))
     // ,currentActiveChannel_(nullptr)
@@ -120,6 +121,28 @@ void EventLoop::queueInLoop(Functor cb){
     }
 }
 
+// 在指定的时间运行回调函数
+TimerId EventLoop::runAt(Timestamp time, TimerCallback cb){
+    return timerQueue_->addTimer(std::move(cb), time, 0.0);
+}
+
+// 运行回调函数，回调函数在delay时间后运行
+TimerId EventLoop::runAfter(double delay, TimerCallback cb){
+    Timestamp time(addTimer(Timestamp::now(), delay));
+    return runAt(time, std::move(cb));
+}
+
+// 运行回调函数，回调函数每隔interval时间运行一次
+TimerId EventLoop::runEvery(double interval, TimerCallback cb){
+    Timestamp time(addTimer(Timestamp::now(), interval));
+    return timerQueue_->addTimer(std::move(cb), time, interval);
+}
+
+//取消定时器
+void EventLoop::cancel(TimerId timerId){
+    return timerQueue_->cancel(timerId);
+}
+
 //唤醒loop所在的线程的
 void EventLoop::wakeup(){
     uint64_t one = 1;
@@ -154,4 +177,5 @@ void EventLoop::doPendingFunctors(){
     }
     callingPendingFunctors_ = false;
 }
+
 
