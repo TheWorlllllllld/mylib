@@ -18,10 +18,11 @@ int main()
         std::cout << "send message" << std::endl;
     };
 
-    loop.runAfter(4, a);
-    loop.runEvery(1, a);
-    loop.runAfter(3, a);
-
+    // loop.runAfter(4, a);
+    // loop.runEvery(1, a);
+    // loop.runAfter(3, a);
+    loop.runAt(Timestamp(4),a);
+    LOG_INFO("time: %s",Timestamp(4).toString().c_str());
 
 
 

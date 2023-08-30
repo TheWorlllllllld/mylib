@@ -40,7 +40,7 @@ public:
 
     void start();
 
-private:
+protected:
     void newConnection(int sockfd, const InetAddress &peerAddr);
     void removeConnection(const TcpConnectionPtr &conn);
     void removeConnectionInLoop(const TcpConnectionPtr &conn);

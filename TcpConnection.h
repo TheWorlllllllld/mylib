@@ -6,12 +6,13 @@
 #include "Buffer.h"
 #include "Timestamp.h"
 
-class Channel;
-class EventLoop;
-class Socket;
 #include <string>
 #include <memory>
 #include <atomic>
+
+class Channel;
+class EventLoop;
+class Socket;
 
 class TcpConnection : noncopyable , public std::enable_shared_from_this<TcpConnection>
 {

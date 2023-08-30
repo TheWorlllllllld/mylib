@@ -139,7 +139,6 @@ void TcpConnection::connectDestroyed(){
     channel_->remove();
 }
 
-
 void TcpConnection::handleRead(Timestamp receiveTime){
     int savedErrno = 0;
     ssize_t n = inputBuffer_.readFd(channel_->fd(), &savedErrno);
