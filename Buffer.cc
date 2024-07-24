@@ -33,12 +33,12 @@ ssize_t Buffer::readFd(int fd, int* savedErrno){
 }
 
 ssize_t Buffer::writeFd(int fd, int* savedErrno){
-    ssize_t n = ::write(fd, begin() + write_index_, readableBytes()); //写入数据
+    ssize_t n = ::write(fd, begin() + read_index_, readableBytes()); //写入数据
     if(n < 0){
         *savedErrno = errno;
     }
     else{
-        write_index_ += n;
+        read_index_ += n;
     }
     return n;
 }
